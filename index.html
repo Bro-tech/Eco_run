@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoRun 🌱</title>
+
+  <link rel="stylesheet" href="src/css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- 🌙 Dark Mode Toggle -->
+<button id="darkModeToggle">🌙 Dark Mode</button>
+
+<!-- ⬆️ Back to Top Button -->
+<button id="backToTop">↑</button>
+
+<div class="container">
+  <header>
+    <h1>EcoRun 🌱🌏</h1>
+    <button type="button" id="showTips">🌍 Show 15 Eco Tips</button>
+  </header>
+
+  <main>
+    <form id="ecoForm">
+      <label>Name:
+        <input type="text" id="name" required />
+      </label>
+      <label>Weight (kg):
+        <input type="number" id="weight" required />
+      </label>
+      <label>Distance Walked (km):
+        <input type="number" id="distance" required />
+      </label>
+      <label>Time Taken (minutes):
+        <input type="number" id="time" required />
+      </label>
+
+      <label>Choose Vehicle:
+        <select id="vehicle" required>
+          <option value="car">Car</option>
+          <option value="motorbike">Motorbike</option>
+          <option value="bus">Bus</option>
+          <option value="train">Train</option>
+          <option value="scooter">Scooter</option>
+          <option value="airplane">Airplane</option>
+          <option value="walking">Walking</option>
+        </select>
+      </label>
+
+      <button type="submit">Calculate Impact</button>
+    </form>
+
+    <section id="result"></section>
+    <section id="tips"></section>
+    <section id="badge"></section>
+    <button id="shareBtn" style="display:none;">📤 Share Your Achievement</button>
+
+    <canvas id="impactChart" style="max-width: 70%; height: 300px;"></canvas>
+
+    <div class="leaderboard">
+      <h3>🌟 Leaderboard</h3>
+      <ul id="leaderboardList">
+        <!-- Leaderboard entries will be added dynamically -->
+      </ul>
+    </div>
+
+    <!-- Eco Days Calendar Section -->
+    <div id="ecoCalendar" class="eco-calendar">
+      <h3>Eco Days Calendar 🌱</h3>
+      <ul id="ecoEvents"></ul>
+    </div>
+
+    <section id="ecoTips" class="hidden"></section>
+    <section id="posts">
+      <h3>🌍 Community Posts</h3>
+      <form id="postForm">
+        <textarea id="postContent" placeholder="Share your thoughts on reducing CO₂ emissions..." required></textarea>
+        <button type="submit">Post</button>
+      </form>
+      <ul id="postList"></ul>
+    </section>
+
+    <!-- Dark Mode Toggle Button -->
+<button id="darkModeToggle">🌙 Dark Mode</button>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">⬆️</button>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast" style="display:none;">Welcome to EcoRun!</div>
+
+<!-- Popup Template -->
+<div id="popup" class="popup" style="display: none;">
+  <h3>Eco Tip of the Day</h3>
+  <p>Turn off the tap while brushing your teeth to save water!</p>
+  <button onclick="closePopup()">Close</button>
+</div>
+
+
+
+    <!-- 🌍 Eco News Section -->
+    <section class="eco-news">
+      <h2>🌍 Latest Eco News</h2>
+      <div class="news-grid">
+        <article class="news-card">
+          <h3>New Electric Bus Routes</h3>
+          <p>City adds 50 new electric buses to reduce emissions.</p>
+          <a href="https://www.sustainable-bus.com/category/electric-bus/" class="read-more">Read More →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 🏆 Eco Challenges Section -->
+    <section class="weekly-challenge">
+      <h2>🎯 Weekly Challenge</h2>
+      <div class="challenge-card">
+        <h3>This Week's Goal</h3>
+        <p>Walk 20km to earn the "Super Walker" badge!</p>
+        <div class="challenge-progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p><span id="currentProgress">0</span>/20 km completed</p>
+        <label for="userProgress">Enter your progress (km):</label>
+        <input type="number" id="userProgress" min="0" max="20" />
+        <button id="updateProgress">Update Progress</button>
+      </div>
+    </section>
+
+    <!-- 🏆 Eco Stats Section -->
+    <section class="eco-stats">
+      <h2>📊 Your Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Distance</h3>
+          <p><span id="totalDistance">0</span> km</p>
+        </div>
+        <div class="stat-card">
+          <h3>CO₂ Saved</h3>
+          <p><span id="co2Saved">0</span> kg</p>
+        </div>
+        <div class="stat-card">
+          <h3>Trees Equivalent</h3>
+          <p><span id="treesEquivalent">0</span> trees</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🏆 Streak Tracker -->
+    <section class="streak-tracker">
+      <h3>🔥 Daily Streak</h3>
+      <p>You’ve submitted data <span id="streakCount">0</span> day(s) in a row!</p>
+    </section>
+
+    <!-- 🏆 Avatar Badges Section -->
+    <section class="avatar-builder">
+      <h3>🧑 Customize Your Avatar</h3>
+      <label for="avatarStyle">Choose Style:</label>
+      <select id="avatarStyle">
+        <option value="runner">Runner</option>
+        <option value="biker">Biker</option>
+        <option value="walker">Walker</option>
+        <option value="ecoHero">Eco Hero</option>
+        <option value="hiker">Hiker</option>
+      </select>
+      <div>
+      </div>
+    </section>
+
+    
+    
+    
+    
+    <!-- 🏆 Footer Section -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About EcoRun</h4>
+          <p>Track your carbon footprint and make a difference!</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#privacy 🕵️‍♂️">Privacy Policy</a></li>
+            <li><a href="#terms 📝">Terms of Use</a></li>
+            <li><a href="#contact 📞">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect With Us</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">📱</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+</div>
+
+
+
+
+<script src="src/js/main.js"></script>
+
+</body>
+</html>

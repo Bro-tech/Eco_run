@@ -1,0 +1,900 @@
+/* 🪴 EcoRun Upgrade Theme Additions */
+
+/* Global Enhancement */
+body {
+  background: linear-gradient(135deg, #e0f7e9 0%, #d0f0c0 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Light Forest Texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Profile Card Revamp */
+.profile-card {
+  background: linear-gradient(145deg, #d5f5d5, #b2e2b2);
+  border: 2px solid #4caf50;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  animation: fadeInUp 0.8s ease;
+}
+
+/* New Level Up Pop-up */
+.level-up-popup {
+  background: radial-gradient(circle at center, #4caf50, #2e7d32);
+  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem 3rem;
+  border: 4px solid #fff;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  animation: bounce 0.8s ease;
+  z-index: 10000;
+}
+
+/* Achievement Toasts */
+.toast {
+  background: linear-gradient(135deg, #81c784, #4caf50);
+}
+
+/* Graph Area Update */
+#graph-container {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #81c784;
+}
+
+/* Eco Tips Enhanced */
+#ecoTips {
+  background: linear-gradient(to right, #e8f5e9, #dcedc8);
+}
+
+/* Progress Bar Shine */
+.progress-bar {
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  box-shadow: 0 0 10px #81c784;
+}
+
+/* Leaderboard Glow */
+.leaderboard {
+  border: 2px solid #66bb6a;
+  background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+}
+
+/* Post Section Boost */
+#posts {
+  background: linear-gradient(to top left, #e8f5e9, #dcedc8);
+}
+
+/* Dark Mode Tweaks */
+body.dark {
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+}
+body.dark::before {
+  background-image: url('https://www.transparenttextures.com/patterns/green-fibers.png');
+  opacity: 0.15;
+}
+
+/* Button Upgrades */
+button, #darkModeToggle, footer button, #ecoTips button, #backToTop {
+  background: linear-gradient(135deg, #66bb6a, #388e3c);
+}
+button:hover, #darkModeToggle:hover, footer button:hover, #ecoTips button:hover, #backToTop:hover {
+  background: linear-gradient(135deg, #43a047, #2e7d32);
+}
+
+/* Cool Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-30px);}
+  60% {transform: translateY(-15px);}
+}
+
+
+
+
+:root {
+    --bg-light: rgba(146, 233, 146, 0.4);
+    --bg-dark: rgba(28, 118, 28, 0.85);
+    --text-light: #111;
+    --text-dark: #151111;
+    --transition: 0.3s ease;
+  }
+  
+  * {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color var(--transition), color var(--transition);
+    min-height: 100vh;
+  }
+
+
+  body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  input, select {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 0.75rem;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition), transform var(--transition);
+  }
+  
+  button:hover {
+    background-color: #1b5e20;
+    transform: scale(1.05);
+  }
+  
+  #result {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  #history {
+    list-style: none;
+    padding: 0;
+  }
+  #history li {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+  }
+  
+  #ecoTips {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #4caf50;
+    background-color: rgba(76, 175, 80, 0.1);
+    border-radius: 8px;
+  }
+  
+  #ecoTips ul {
+    padding-left: 1rem;
+    list-style-type: circle;
+  }
+    #ecoTips li {
+        margin-bottom: 0.5rem;
+    }
+    #ecoTips h2 {
+        margin-top: 0;
+    }
+    #ecoTips p {
+        margin-bottom: 0.5rem;
+    }
+    #ecoTips button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color var(--transition), transform var(--transition);
+    }
+    #ecoTips button:hover {
+        background-color: #388e3c;
+        transform: scale(1.05);
+    }
+    #ecoTips button:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+    }
+    #ecoTips button:active {
+        transform: scale(0.95);
+    }
+    #ecoTips button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    #ecoTips button:disabled:hover {
+        background-color: #ccc;
+        transform: none;
+    }
+    #ecoTips button:disabled:focus {
+        box-shadow: none;
+    }
+    #ecoTips button:disabled:active {
+        transform: none;
+    }
+    #ecoTips button:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+    }
+    #ecoTips button:active {
+        transform: scale(0.95);
+    }
+    #ecoTips button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    #ecoTips button:disabled:hover {
+        background-color: #ccc;
+        transform: none;
+    }
+
+    /* Footer Styling */
+footer {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(76, 175, 80, 0.1); /* Light green background */
+    border-top: 1px solid #4caf50; /* Green border */
+    border-radius: 8px;
+}
+
+/* Footer Button Styling */
+footer button {
+    padding: 0.75rem 1.5rem;
+    background-color: #4caf50; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+footer button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/*leaderboard*/
+
+.leaderboard {
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    width: 200px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 8;
+  }
+  
+  .leaderboard h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .leaderboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .leaderboard li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+
+  #posts {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #posts h3 {
+    margin-bottom: 10px;
+  }
+  
+  #postForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #postForm textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #postForm button {
+    align-self: flex-end;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #postForm button:hover {
+    background-color: #388e3c;
+  }
+  
+  #postList {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .post-content {
+    flex: 1;
+  }
+  
+  .post-votes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .post-votes button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .post-votes button:hover {
+    color: #4caf50;
+  }
+
+  .leaderboard {
+    background-image: url('src/images/run.jpg'); /* Replace with the actual path to your image */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+
+/* Dark Mode Toggle */
+#darkModeToggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: background-color var(--transition), transform var(--transition);
+}
+#darkModeToggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(73, 172, 76, 0.5);
+}
+#darkModeToggle:active {
+  transform: scale(0.95);
+}
+#darkModeToggle:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+#darkModeToggle:disabled:hover {
+  background-color: #ccc;
+  transform: none;
+}
+#darkModeToggle:disabled:focus {
+  box-shadow: none;
+}
+#darkModeToggle:disabled:active {
+  transform: none;
+}
+
+#darkModeToggle:hover {
+  background-color: #388e3c;
+  transform: scale(1.1);
+}
+
+body.dark {
+  background-color: #2e7d32; /* Dark green background */
+  color: #fff;
+}
+
+button, #darkModeToggle, #backToTop {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Smooth leaderboard entry updates */
+.leaderboard li {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.leaderboard li:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* Notification Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 50;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress Bar */
+.progress-container {
+  background-color: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+/*graph*/
+#graph-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+#graph {
+  width: 100%;
+  height: 300px;
+}
+#graph h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#graph canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  padding: 0.75rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+#backToTop:hover {
+  background-color: #388e3c;
+  transform: scale(1.1);
+}
+#backToTop:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+}
+#backToTop:active {
+  transform: scale(0.95);
+}
+#backToTop:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+#backToTop:disabled:hover {
+  background-color: #ccc;
+  transform: none;
+}
+#backToTop:disabled:focus {
+  box-shadow: none;
+}
+#backToTop:disabled:active {
+  transform: none;
+}
+
+/* Eco Calendar Styling */
+.eco-calendar {
+  background-color: rgba(232, 245, 233, 0.9);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(6, 6, 6, 0.1);
+  margin-top: 2rem;
+}
+
+.eco-calendar h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#ecoEvents {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#ecoEvents li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #c1e0c2;
+  font-size: 0.95rem;
+}
+
+#ecoEvents li:last-child {
+  border-bottom: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE1MTJkdW1kNjgwenk1MGh4aXh0aDQ0Zmg0N3p5d2pidjF4ZHB3YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5UDsrMd6ctz6KDXyIo/giphy.gif') center center / cover no-repeat;
+  z-index: -1;
+  opacity: 0.2; /* Adjust for visibility */
+  pointer-events: none; /* So it doesn’t block clicks */
+}
+
+/* Avatar Sidebar */
+.avatar-sidebar {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 10px;
+  z-index: 10;
+}
+
+.avatar-sidebar img {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Navigation Styles */
+.main-nav {
+  background-color: rgba(76, 175, 80, 0.9);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #e8f5e9;
+}
+
+/* Statistics Dashboard */
+.eco-stats {
+  margin: 2rem 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-card {
+  background-color: #e8f5e9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2e7d32;
+}
+
+.stat-card p {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #1b5e20;
+}
+
+/* Weekly Challenge */
+.weekly-challenge {
+  background-color: #f1f8e9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.challenge-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-progress {
+  background-color: #e8f5e9;
+  border-radius: 10px;
+  height: 20px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+/* Footer Styles */
+.main-footer {
+  background-color: #2e7d32;
+  color: white;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.footer-section h4 {
+  margin: 0 0 1rem 0;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #a5d6a7;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Achievement Notification */
+.achievement-notification {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.3s ease;
+  z-index: 1000;
+}
+
+.achievement-notification.show {
+  bottom: 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.stat-card, .challenge-card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.footer-section {
+  animation: slideIn 0.5s ease forwards;
+}
+
+/* Container for both buttons */
+.floating-buttons {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between buttons */
+  z-index: 1000;
+}
+
+/* Common style for both buttons and links */
+.floating-buttons .floating-button {
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Hover effect for both buttons */
+.floating-buttons .floating-button:hover {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  transform: translateY(-2px) scale(1.05);
+}
+.floating-buttons .floating-button:active {
+  transform: translateY(2px) scale(0.95);
+}
+.floating-buttons .floating-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+}
+.floating-buttons .floating-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Floating Button for EcoRun */
+.streak-tracker {
+  background: linear-gradient(135deg, #ffe082, #ffca28);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+.streak-tracker h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Avatar Builder */
+.avatar-builder {
+  background-color: #f1f8e9;
+  border: 2px solid #81c784;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 2rem 0;
+}
+.avatar-builder img {
+  width: 100px;
+  margin-top: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.avatar-builder select {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Challenge Progress Bar */
+.challenge-progress {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.5s ease-in-out;
+}
