@@ -36,7 +36,16 @@ darkModeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', theme);
 });
 
+// 🌑 Dark Mode Text Color Toggle
+darkModeToggle.addEventListener('change', () => {
+  document.body.classList.toggle('dark');
+  const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+  localStorage.setItem('theme', theme);
 
+  // Toggle text color
+  const textColor = theme === 'dark' ? 'black' : '';
+  document.body.style.color = textColor;
+});
 
 // 🧮 Main Form Logic
 form.addEventListener('submit', (e) => {
@@ -64,6 +73,9 @@ form.addEventListener('submit', (e) => {
   setupShareButton(name, co2Saved, caloriesBurned);
   updateLeaderboard(name, co2Saved);
   updateImpactChart(co2Saved);
+
+  // Update "Your Impact" section
+  updateYourImpact(distance, co2Saved);
 
   // Update Progress (simple: assume 10kg CO₂ goal)
   updateProgressBar(Math.min((co2Saved / 10) * 100, 100));
@@ -114,7 +126,7 @@ function updateImpactChart(co2Saved) {
     labels: ['CO₂ Emitted', 'CO₂ Saved'],
     datasets: [{
       label: 'CO₂ Impact (kg)',
-      data: [co2Saved, 0],
+      data: [0, co2Saved], // Corrected the data order
       backgroundColor: ['#ff6b6b', '#4caf50']
     }]
   };
@@ -125,7 +137,13 @@ function updateImpactChart(co2Saved) {
     data: data,
     options: {
       responsive: true,
-      scales: { y: { beginAtZero: true } }
+      scales: { y: { beginAtZero: true } },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top'
+        }
+      }
     }
   });
 }
@@ -214,10 +232,11 @@ backToTop.addEventListener('click', () => {
 
 // 🌍 Eco Tips Toggle
 document.getElementById('showTips').addEventListener('click', () => {
-  ecoTipsSection.style.display = ecoTipsSection.style.display === 'none' ? 'block' : 'none';
-  ecoTipsSection.innerHTML = `
-    <div>
-      <h4>🌿 15 Ways to Help the Environment</h4>
+  const ecoTipsSection = document.getElementById('ecoTips');
+  if (ecoTipsSection.style.display === 'none' || !ecoTipsSection.style.display) {
+    ecoTipsSection.style.display = 'block';
+    ecoTipsSection.innerHTML = `
+      <h4>🌱 15 Ways to Help the Environment</h4>
       <ul>
         <li>Walk or bike for short distances</li>
         <li>Turn off lights when not needed</li>
@@ -235,8 +254,10 @@ document.getElementById('showTips').addEventListener('click', () => {
         <li>Buy second-hand goods</li>
         <li>Educate your friends 🌍</li>
       </ul>
-    </div>
-  `;
+    `;
+  } else {
+    ecoTipsSection.style.display = 'none';
+  }
 });
 
 // Eco Calendar Data
@@ -359,11 +380,10 @@ function updateStreak() {
   const streak = parseInt(localStorage.getItem('streak') || '0');
   const today = new Date().toLocaleDateString();
 
-  if (lastDate === today) return; // already counted today
+  if (lastDate === today) return; // Already counted today
 
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-
   const yesterdayStr = yesterday.toLocaleDateString();
 
   const newStreak = lastDate === yesterdayStr ? streak + 1 : 1;
@@ -375,16 +395,17 @@ function updateStreak() {
 
 // Call after form submission
 form.addEventListener('submit', (e) => {
-  // ...existing logic...
+  e.preventDefault();
   updateStreak();
 });
 
 
-// Avatar dropdown and preview image elements
+// Avatar Selection
 const avatarStyle = document.getElementById('avatarStyle');
-const avatarPreview = document.getElementById('avatarPreview');
+const avatarPreview = document.createElement('img');
+avatarPreview.id = 'avatarPreview';
+document.querySelector('.avatar-builder').appendChild(avatarPreview);
 
-// Map of styles to avatar image URLs
 const avatarImages = {
   runner: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDI0NWwzMzBtamZ3ZmdqMGp5MHhpOHVvZTA0aXZ1NHN6cGk1ajl5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7O2cJd5JOz6Fv5omkk/giphy.gif',
   biker: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTd4Y2hpNmx5MHNzbjZoeDI5eWlvMjF3OGp2YTRndWM5a3BybTcyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XqKH6GqYatE63lmD2D/giphy.gif',
@@ -392,6 +413,12 @@ const avatarImages = {
   ecoHero: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXBucXNoa2t0d3l6Y29zMWwwcXBzN2lneW90czl1NmNhcXJvcDRrNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UBBJYj7kgrRpOOdwrv/giphy.gif',
   hiker: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm45Mjk0MGdrcjU1ZGp1MG16NW1lMW9nanFncmRmZW8zN2dqd2JkaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT0BKGMJhmhF28DYCk/giphy.gif'
 };
+
+avatarStyle.addEventListener('change', () => {
+  const selected = avatarStyle.value;
+  avatarPreview.src = avatarImages[selected];
+  localStorage.setItem('avatarStyle', selected);
+});
 
 // Set default avatar if not stored
 const savedAvatar = localStorage.getItem('avatarStyle') || 'runner';
@@ -436,3 +463,101 @@ document.addEventListener("DOMContentLoaded", () => {
     userProgressInput.value = "";
   });
 });
+
+// Ensure the website opens in light mode by default
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.remove('dark'); // Remove dark mode class
+  document.body.classList.add('light'); // Add light mode class
+});
+
+// Update the "Your Impact" section dynamically
+function updateYourImpact(distance, co2Saved) {
+  const totalDistanceElement = document.getElementById('totalDistance');
+  const co2SavedElement = document.getElementById('co2Saved');
+  const treesEquivalentElement = document.getElementById('treesEquivalent');
+
+  // Update total distance
+  const currentDistance = parseFloat(totalDistanceElement.textContent) || 0;
+  const newDistance = currentDistance + distance;
+  totalDistanceElement.textContent = newDistance.toFixed(2);
+
+  // Update CO₂ saved
+  const currentCo2Saved = parseFloat(co2SavedElement.textContent) || 0;
+  const newCo2Saved = currentCo2Saved + co2Saved;
+  co2SavedElement.textContent = newCo2Saved.toFixed(2);
+
+  // Update trees equivalent (1 tree = 21kg CO₂ saved)
+  const treesEquivalent = newCo2Saved / 21;
+  treesEquivalentElement.textContent = treesEquivalent.toFixed(2);
+}
+
+// Eco Trivia Game Logic
+const ecoTriviaQuestions = [
+  {
+    question: "What is the most eco-friendly mode of transportation?",
+    answers: ["Car", "Bicycle", "Airplane", "Train"],
+    correct: 1
+  },
+  {
+    question: "How much CO₂ does a tree absorb per year on average?",
+    answers: ["10kg", "21kg", "50kg", "100kg"],
+    correct: 1
+  },
+  {
+    question: "Which of these is a renewable energy source?",
+    answers: ["Coal", "Solar", "Natural Gas", "Oil"],
+    correct: 1
+  }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+const startGameButton = document.getElementById("startGame");
+const gameContainer = document.getElementById("gameContainer");
+const questionElement = document.getElementById("question");
+const answersElement = document.getElementById("answers");
+const nextQuestionButton = document.getElementById("nextQuestion");
+const scoreElement = document.getElementById("score");
+
+startGameButton.addEventListener("click", () => {
+  startGameButton.style.display = "none";
+  gameContainer.style.display = "block";
+  loadQuestion();
+});
+
+function loadQuestion() {
+  const currentQuestion = ecoTriviaQuestions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+  answersElement.innerHTML = "";
+
+  currentQuestion.answers.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.textContent = answer;
+    button.addEventListener("click", () => checkAnswer(index));
+    answersElement.appendChild(button);
+  });
+}
+
+function checkAnswer(selectedIndex) {
+  const currentQuestion = ecoTriviaQuestions[currentQuestionIndex];
+  if (selectedIndex === currentQuestion.correct) {
+    score++;
+  }
+
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < ecoTriviaQuestions.length) {
+    loadQuestion();
+  } else {
+    endGame();
+  }
+}
+
+function endGame() {
+  questionElement.style.display = "none";
+  answersElement.style.display = "none";
+  nextQuestionButton.style.display = "none";
+  scoreElement.style.display = "block";
+  scoreElement.textContent = `You scored ${score} out of ${ecoTriviaQuestions.length}!`;
+}
