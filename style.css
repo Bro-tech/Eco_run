@@ -5,6 +5,7 @@ body {
   background: linear-gradient(135deg, #e0f7e9 0%, #d0f0c0 100%);
   background-attachment: fixed;
   background-size: cover;
+  color: #fff; /* White text for light mode */
 }
 
 /* Light Forest Texture */
@@ -76,19 +77,21 @@ body::before {
 
 /* Dark Mode Tweaks */
 body.dark {
-  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  background: linear-gradient(135deg, #0d3b0d 0%, #1b5e20 100%);
+  color: #000; /* Black text for dark mode */
 }
 body.dark::before {
-  background-image: url('https://www.transparenttextures.com/patterns/green-fibers.png');
-  opacity: 0.15;
+  background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmE1MTJkdW1kNjgwenk1MGh4aXh0aDQ0Zmg0N3p5d2pidjF4ZHB3YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5UDsrMd6ctz6KDXyIo/giphy.gif');
+  opacity: 0.3; /* Increased opacity for better visibility */
 }
 
 /* Button Upgrades */
 button, #darkModeToggle, footer button, #ecoTips button, #backToTop {
-  background: linear-gradient(135deg, #66bb6a, #388e3c);
+  background: linear-gradient(135deg, #2e7d32, #288b2f);
+  color: #e0f7e9;
 }
 button:hover, #darkModeToggle:hover, footer button:hover, #ecoTips button:hover, #backToTop:hover {
-  background: linear-gradient(135deg, #43a047, #2e7d32);
+  background: linear-gradient(135deg, #1b5e20, #2d952d);
 }
 
 /* Cool Animations */
@@ -282,7 +285,7 @@ footer {
 footer button {
     padding: 0.75rem 1.5rem;
     background-color: #4caf50; /* Green background */
-    color: white;
+    color: rgb(9, 6, 6);
     border: none;
     border-radius: 5px;
     font-size: 1rem;
@@ -897,4 +900,66 @@ body::before {
   height: 100%;
   background-color: #4caf50;
   transition: width 0.5s ease-in-out;
+}
+
+/* Dark Mode Styles */
+body.dark {
+  background-color: #1b5e20; /* Darker green background */
+  color: #ffffff; /* White text for visibility */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark button {
+  background-color: #388e3c; /* Dark green for buttons */
+  color: #ffffff; /* White text for buttons */
+  border: 1px solid #ffffff; /* White border for better visibility */
+}
+
+body.dark .leaderboard, body.dark .eco-calendar, body.dark .weekly-challenge, body.dark .eco-stats, body.dark .streak-tracker {
+  background-color: #2e7d32; /* Slightly lighter green for sections */
+  color: #ffffff; /* White text */
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+body.dark a {
+  color: #81c784; /* Light green for links */
+}
+
+body.dark a:hover {
+  color: #aed581; /* Brighter green on hover */
+}
+
+body.dark .progress-bar {
+  background-color: #66bb6a; /* Light green for progress bar */
+}
+
+body.dark .toast {
+  background-color: #388e3c; /* Dark green for toast notifications */
+  color: #ffffff; /* White text */
+}
+
+/* Ensure text color is always visible black */
+body, body.dark {
+  color: #312e2e !important; /* Force black text color */
+}
+
+/* Override specific elements to ensure black text */
+button, #darkModeToggle, footer button, #ecoTips button, #backToTop {
+  color: #2e2b2b !important;
+}
+
+/* Ensure links are also black */
+a, a:hover {
+  color: #2e2b2b !important;
+}
+
+/* Ensure weekly challenge text and context text are always black */
+.weekly-challenge, .weekly-challenge * {
+  color: #000 !important;
+}
+
+/* Ensure leaderboard text is always black */
+.leaderboard, .leaderboard * {
+  color: #000 !important;
 }
