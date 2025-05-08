@@ -10,9 +10,6 @@
 </head>
 <body>
 
-<!-- 🌙 Dark Mode Toggle -->
-<button id="darkModeToggle">🌙 Dark Mode</button>
-
 <!-- ⬆️ Back to Top Button -->
 <button id="backToTop">↑</button>
 
@@ -91,12 +88,6 @@
 <!-- Toast Notification -->
 <div id="toast" class="toast" style="display:none;">Welcome to EcoRun!</div>
 
-<!-- Popup Template -->
-<div id="popup" class="popup" style="display: none;">
-  <h3>Eco Tip of the Day</h3>
-  <p>Turn off the tap while brushing your teeth to save water!</p>
-  <button onclick="closePopup()">Close</button>
-</div>
 
 
 
@@ -168,10 +159,19 @@
       </div>
     </section>
 
-    
-    
-    
-    
+    <!-- Add a small game section -->
+    <section class="eco-game">
+      <h2>🌳 Eco Trivia Game</h2>
+      <p>Test your knowledge about the environment!</p>
+      <button id="startGame">Start Game</button>
+      <div id="gameContainer" style="display:none;">
+        <p id="question"></p>
+        <div id="answers"></div>
+        <button id="nextQuestion" style="display:none;">Next</button>
+        <p id="score" style="display:none;"></p>
+      </div>
+    </section>
+
     <!-- 🏆 Footer Section -->
     <footer class="main-footer">
       <div class="footer-content">
@@ -199,10 +199,6 @@
     </footer>
   </main>
 </div>
-
-
-
-
 <script src="src/js/main.js"></script>
 
 </body>
