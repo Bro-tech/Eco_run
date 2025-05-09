@@ -26,6 +26,7 @@ Beyond the alarming headlines, several key inspirations fueled our journey:
 * 📅 **Stay eco-aware** – Get notified about global environmental awareness days.
 * 🌗 **Toggle dark mode** – Browse in light or dark with a beautifully themed interface.
 * 📤 **Share your journey** – Post your achievements and inspire friends to go green.
+ADDITIONALLY ADDED A SMALL 3 QUESTION ECO-QUIZ TO KEEP THE USER'S ENTERTAINED
 
 > Start your journey to a greener planet—one step at a time with **EcoRun**.
 > 🌱 **Small steps, big change.**
