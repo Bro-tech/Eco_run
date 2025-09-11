@@ -1,4 +1,4 @@
-// 🚗 Emission Rates
+ // 🚗 Emission Rates
 const emissionRates = {
   car: 0.21,
   motorbike: 0.11,
@@ -26,7 +26,7 @@ const ecoTipsSection = document.getElementById('ecoTips');
 // Chart instance
 let chart;
 
-// 🌑 Theme Persistence
+// 🌕 / 🌑 Theme Persistence
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') document.body.classList.add('dark');
 darkModeToggle.checked = currentTheme === 'dark';
